@@ -70,7 +70,7 @@ app.listen(8080, () => {
     console.log("Servidor corriendo en puerto 8080")
 })
 //-------------------------------------Mongoose----------------------------------------------------------//
-mongoose.connect("mongodb+srv://bastsrojas:ptLuitYCTl6wE4jB@cluster0.wx37dwm.mongodb.net/?retryWrites=true&w=majority")
+mongoose.connect("")
 .then(()=>{
     console.log("Conectado con Mongo Atlas")
 })
