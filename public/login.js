@@ -4,7 +4,8 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
         const email = document.querySelector("#email").value
         const password = document.querySelector("#password").value
 
-        const response = await fetch("/login",{
+        try {
+            const response = await fetch("/login", {
             method: "POST",
             body: JSON.stringify({email, password}),
             headers: {
@@ -14,7 +15,18 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
         if(response.ok){
             const data = await response.json()
             localStorage.setItem("token", data.token)
+
+            if(data.token && data.user.rol === 'admin') {
+            }
+            }else if(data.token && data.user.rol === 'usuario') {
+                console.log('Redirigiendo a /current');
+                window.location.href = '/current';
         }else{
             console.error("Error en el inicio de sesion")
         }
+        } catch (error) {
+            console.error("Error en la solicitud", error)
+        }
+        
+        
     })
